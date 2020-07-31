@@ -1,0 +1,89 @@
+﻿@model Cusrim.Core.Models.Student
+
+@{
+    ViewBag.Title = "Info";
+}
+
+@{
+    Html.RenderPartial("../Navbar");
+}
+<div class="container">
+    <div>
+        <div class="text-center">
+            <h5>SETUP PROFILE</h5>
+        </div>
+        @using (Html.BeginForm("AuthenticateUser", "User", FormMethod.Post, new { @class = "" }))
+
+        {
+            <form class="">
+                <div class="info-form ">
+
+
+                    <div>
+                        <h3>Basic Information</h3>
+
+                    </div>
+                    <hr />
+
+                    <div class="">
+
+
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="firstName">Name</label>
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Enter your name", required = "required" })
+
+                            </div>
+                          
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="Level">Level</label>
+                                @Html.TextBoxFor(m => m.Level, new { @class = "form-control", placeholder = "Enter your level", required = "required" })
+
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="lastName">Department</label>
+                                @Html.TextBoxFor(m => m.Department, new { @class = "form-control", placeholder = "Enter your department", required = "required" })
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="info-form card mt-5">
+
+
+                    <div>
+                        <h3>About</h3>
+
+                    </div>
+                    <hr />
+                    <div class="card-body">
+
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="firstName">Grade</label>
+                                @Html.TextBoxFor(m => m.Grade, new { @class = "form-control", placeholder = "Enter your CGPA", required = "required" })
+
+                            </div>
+                          
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+                <div class="checkbox mt-3 text-center">
+                    <button class="btn w-25 text-center btn-block bg_yellow align_center bg_cyan" type="submit">Register</button>
+                    @Html.ActionLink("Info", "Dashboard", "student")
+                </div>
+            </form>
+
+        }
+    </div>
+</div>

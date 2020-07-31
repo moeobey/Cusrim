@@ -1,0 +1,16 @@
+﻿
+<div class="d-flex flex-column flex-md-row align-items-center  px-md-4 mb-3 bg_lightblue border-bottom shadow-sm " , style="height:100px;">
+    <span> <img src="~/Images/cap.png" class="small_img  mr-3" /></span>
+    <h3 class="my-0 mr-md-auto font-weight-normal">CUSRiM</h3>
+    <nav class="my-2 my-md-0 mr-md-3">
+        Welcome  @Session["Username"]
+
+        @Html.ActionLink("SignOut", "LogOut", "User")
+
+
+    </nav>
+
+    @*<a class="btn btn-outline-primary" href="#">Sign up</a>*@
+</div>
+
+
