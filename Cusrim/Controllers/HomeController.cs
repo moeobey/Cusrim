@@ -1,4 +1,5 @@
-﻿using Cusrim.Core.ViewModels;
+﻿using Cusrim.Core.Models;
+using Cusrim.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace Cusrim.Controllers
     {
         public ActionResult Index()
         {
-            var viewModel = new StudentRegistration();
-            return View(viewModel);
+           
+            return View(new User());
         }
 
         public ActionResult About()

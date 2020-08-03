@@ -25,6 +25,13 @@ namespace Cusrim.Data
             return student;
 
         }
-        
+        public Student GetByUserId(long userId)
+        {
+
+            var student = _context.Students.FirstOrDefault(u => u.UserId == userId);
+            return student;
+        }
+
+
     }
 }

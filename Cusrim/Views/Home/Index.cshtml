@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Cusrim.Core.Models.User
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -332,3 +334,84 @@
     </div>
 </section>
 
+
+
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                @using (Html.BeginForm("AuthenticateUser", "User", FormMethod.Post, new { @class = "form-signin" }))
+
+                {
+                    <img class="mb-4" src="~/Images/cap.png" alt="" width="72" height="72">
+                    <h1 class="h3 mb-3 font-weight-normal">WELCOME BACK</h1>
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Enter Staff ID", required = "required" })
+
+
+                    @*<input type="email" id="inputEmail" class="form-control" placeholder="Matric Number" required autofocus>*@
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    @Html.PasswordFor(m => m.password, new { @class = "form-control", placeholder = "password", required = "required" })
+
+                    @*<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>*@
+                    <div class="checkbox mb-3">
+                        @Html.AntiForgeryToken()
+                        <button class="btn w-75 text-center align_center btn-block bg_yellow" type="submit">Sign in</button>
+                        @Html.ActionLink("SignUp", "Register", "Faculty")
+                    </div>
+
+
+                }
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="loginStudent" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+
+                @using (Html.BeginForm("AuthenticateUser", "User", FormMethod.Post, new { @class = "form-signin" }))
+
+                {
+                    <img class="mb-4" src="~/Images/cap.png" alt="" width="72" height="72">
+                    <h1 class="h3 mb-3 font-weight-normal">WELCOME BACK</h1>
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Matric Number", required = "required", type = "email" })
+
+                    @*<input type="email" id="inputEmail" class="form-control" placeholder="Matric Number" required autofocus>*@
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    @Html.PasswordFor(m => m.password, new { @class = "form-control", placeholder = "password", required = "required" })
+
+                    @*<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>*@
+                    <div class="checkbox mb-3">
+                        @Html.AntiForgeryToken()
+                        <button class="btn w-75 text-center align_center btn-block bg_yellow" type="submit">Sign in</button>
+                        @Html.ActionLink("SignUp", "Register", "Student")
+                    </div>
+
+
+                }
+
+
+            </div>
+
+        </div>
+    </div>
+</div>

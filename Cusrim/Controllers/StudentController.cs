@@ -14,6 +14,8 @@ namespace Cusrim.Controllers
         private readonly UserLogic _context = new UserLogic();
         private readonly StudentLogic _studentContext = new StudentLogic();
 
+        private readonly FacultyLogic _facultyContext = new FacultyLogic();
+
 
         // GET: Student
         public ActionResult Index()
@@ -44,10 +46,16 @@ namespace Cusrim.Controllers
                 Session["Password"] = curUser.password;
                 Session["Username"] = curUser.Username;
                 Session["Role"] = curUser.UserRole;
-                if ((string)Session["Role"] == $"student")
+                var status = _studentContext.GetByUserId(curUser.Id).profile_status;
+                if ((string)Session["Role"] == $"student" && status )
                 {
                     return RedirectToAction("Dashboard", "Student");
                 }
+                else if ((string)Session["Role"] == $"student" && !status )
+                {
+                    return RedirectToAction("Info", "Student");
+                }
+            
                 else
                 {
                 
@@ -82,16 +90,25 @@ namespace Cusrim.Controllers
                     {
                         MatricNo = studentRegistration.Student.MatricNo,
                         Email = studentRegistration.Student.Email,
-                        UserId = _context.GetLast(),
-
-                        
-
+                        UserId = _context.GetLast()
                     };
                     _studentContext.Save(student);
 
                 }
                 TempData["Success"] = "Registration Successful";
-                    return RedirectToAction("Info");
+
+                var id = _context.GetLast();
+                var curUser = _context.Get(id);
+                Session["id"] = curUser.Id;
+                Session["Password"] = curUser.password;
+                Session["Username"] = curUser.Username;
+                Session["Role"] = curUser.UserRole;
+               
+                return RedirectToAction("Info");
+
+
+
+
             }
             if (!matricIsUnique)
                 ModelState.AddModelError("EmailExist", "This Matric Number has been registered");
@@ -99,11 +116,46 @@ namespace Cusrim.Controllers
         }
         public ActionResult Info()
         {
-            return View();
+            return View();  
         }
+
+        public ActionResult Save(Student student)
+        {
+            var userId = Session["id"];
+
+            var studentInDb = _studentContext.GetByUserId( Convert.ToInt64(userId));
+            studentInDb.Grade = student.Grade;
+            studentInDb.Level = student.Level;
+            studentInDb.Name = student.Name;
+            studentInDb.Department = student.Department;
+            studentInDb.profile_status = true;
+            student.profile_status = true;
+            _studentContext.Update(student);
+
+            return RedirectToAction("Dashboard");
+        }
+
         public ActionResult Dashboard()
         {
-            return View();
+            var userId = Session["id"];
+            var facultyStatus = false;
+            var studentInDb = _studentContext.GetByUserId(Convert.ToInt64(userId));
+            var faculty = new Faculty();
+           if(studentInDb?.FacultyId != null)
+            {
+                facultyStatus = true;
+                faculty = _facultyContext.Get(Convert.ToInt64(studentInDb.FacultyId));
+            }
+
+            var viewModel = new StudentDashboard
+            {
+                HasStaff = facultyStatus,
+                Student = studentInDb,
+                Faculty = faculty
+             
+            };
+
+            return View(viewModel);
         }
     }
 }

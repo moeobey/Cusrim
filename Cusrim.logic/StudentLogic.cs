@@ -41,5 +41,9 @@ namespace Cusrim.logic
 
             return isUnique;
         }
+        public Student GetByUserId(long userId)
+        {
+            return _db.GetByUserId(userId);
+        }
     }
 }

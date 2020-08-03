@@ -23,5 +23,12 @@ namespace Cusrim.Data
             return faculty;
 
         }
+
+        public Faculty GetByUserId(long userId)
+        {
+
+            var faculty = _context.Faculties.FirstOrDefault(u => u.UserId == userId);
+            return faculty;
+        }
     }
 }

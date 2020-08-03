@@ -1,4 +1,4 @@
-﻿
+﻿@model Cusrim.Core.ViewModels.StudentDashboard
 
 @{
     ViewBag.Title = "Info";
@@ -15,60 +15,87 @@
                     Assigned Supervisor
                 </div>
                 <div class="card outer-outline">
-
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <img class="dash_image" src="~/Images/avatar.png" />
-                            </div>
-                            <div class="col-md-8">
-                                <p>Name</p>
-                                <h4>Name</h4>
-                                <p>Name</p>
-                                <h4>Name</h4> <p>Name</p>
-                                <h4>Name</h4> <p>Name</p>
-                                <h4>Name</h4>
-                            </div>
+                            @if (!Model.HasStaff)
+                            {
+                                <p>You are not currently assigned to a supervisor</p>
+                            }
+                            else
+                            {
+
+
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img class="dash_image" src="~/Images/avatar.png" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p>@Model.Faculty.Name</p>
+                                        <h4>Name</h4>
+                                        <p>@Model.Faculty.Name</p>
+                                        <h4>Phone Number</h4> <p>@Model.Faculty.PhoneNumber</p>
+                                        <h4>Email</h4> <p>@Model.Faculty.Email</p>
+                                        <h4>Department</h4> <p>@Model.Faculty.Department</p>
+                                    </div>
+                                </div>
+
+                        }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="card-header dash-header">
+                Notifications
+            </div>
+            <div class="card outer-outline">
+
+                <div class="card-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-md-6 mb-3">
+            <div class="card-header dash-header">
+                Profile
+            </div>
+            <div class="card outer-outline">
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="dash_image" src="~/Images/avatar.png" />
+                        </div>
+                        <div class="col-md-8">
+
+                            <h4>Name</h4>
+                            <p>@Model.Student.Name</p>
+                            <h4>Matric Number</h4> <p>@Model.Student.MatricNo</p>
+                            <h4>Email</h4> <p>@Model.Student.Email</p>
+                            <h4>Department</h4> <p>@Model.Student.Department</p>
+                            <h4>Level</h4> <p>@Model.Student.Level</p>
+                            <h4>Grade</h4> <p>@Model.Student.Grade</p>
+
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 mb-3">
-                <div class="card-header dash-header">
-                    Notifications
-                </div>
-                <div class="card outer-outline">
-
-                    <div class="card-body">
-
-                    </div>
+                <div class="btn btn-primary w-25">
+                    edit
                 </div>
             </div>
         </div>
-        <div class="row ">
-            <div class="col-md-6 mb-3">
-                <div class="card-header dash-header">
-                    Profile
-                </div>
-                <div class="card outer-outline">
-
-                    <div class="card-body">
-
-                    </div>
-                </div>
+        <div class="col-md-6 mb-3">
+            <div class="card-header dash-header">
+               Report
             </div>
-            <div class="col-md-6 mb-3">
-                <div class="card-header dash-header">
-                    Applied Company
-                </div>
-                <div class="card outer-outline">
+            <div class="card outer-outline">
 
-                    <div class="card-body">
+                <div class="card-body">
 
-                    </div>
                 </div>
             </div>
         </div>
-
     </div>
+
 </div>

@@ -172,6 +172,19 @@ namespace Cusrim.Controllers
                 ModelState.AddModelError("StaffExist", "This Staff No has been registered");
             return View();
         }
+        public ActionResult Save(Faculty faculty)
+        {
+            var userId = Session["id"];
+
+            var facultyInDb = _facultyContext.GetByUserId(Convert.ToInt64(userId));
+            facultyInDb.PhoneNumber = faculty.PhoneNumber;
+            facultyInDb.Name = faculty.Name;
+            facultyInDb.Department = faculty.Department;
+            facultyInDb.profile_status = true;
+            _facultyContext.Update(faculty);
+
+            return RedirectToAction("Dashboard");
+        }
 
         public ActionResult Info()
         {
