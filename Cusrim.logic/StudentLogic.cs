@@ -45,5 +45,9 @@ namespace Cusrim.logic
         {
             return _db.GetByUserId(userId);
         }
+        public IEnumerable<Student> GetSupervisees(long facultyId)
+        {
+            return _db.GetSupervisees(facultyId);
+        }
     }
 }

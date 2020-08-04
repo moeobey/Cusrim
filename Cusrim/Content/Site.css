@@ -227,3 +227,15 @@ h1 {
     height: 100px;
     width: 120px;
 }
+
+.dashboard-container{
+    height:350px;
+overflow-y:auto;
+}
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}

@@ -31,6 +31,10 @@ namespace Cusrim.Data
             var student = _context.Students.FirstOrDefault(u => u.UserId == userId);
             return student;
         }
+       public IEnumerable<Student> GetSupervisees(long facultyId)
+        {
+            return _context.Students.Where(c => c.FacultyId == facultyId);
+        }
 
 
     }

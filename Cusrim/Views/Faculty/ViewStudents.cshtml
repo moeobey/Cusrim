@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Cusrim.Core.Models.Student>
+@{
+    ViewBag.Title = "ViewStudents";
+}
+@{
+    Html.RenderPartial("../Navbar");
+}
+<div class="container">
+    <h3>STUDENTS</h3>
+    <table id="table" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th> Name</th>
+                <th>Matric Number</th>
+                <th>Department</th>
+                <th>Level</th>
+                <th>Grade</th>
+
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>@student.Name</td>
+
+                    <td>@student.MatricNo</td>
+                    <td>@student.Department</td>
+                    <td>@student.Level</td>
+
+                    <td>@student.Grade</td>
+                    <td>
+                        @if (student.FacultyId == null)
+                        {
+                            <div class="option_span pull-left">
+                                @Html.ActionLink("Attach", "Attach", "Faculty", new { Id = student.Id })
+                            </div>
+                        }
+
+
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+</div>

@@ -15,7 +15,7 @@
                     Assigned Supervisor
                 </div>
                 <div class="card outer-outline">
-                    <div class="card-body">
+                    <div class="card-body dashboard-container">
                             @if (!Model.HasStaff)
                             {
                                 <p>You are not currently assigned to a supervisor</p>
@@ -49,7 +49,7 @@
             </div>
             <div class="card outer-outline">
 
-                <div class="card-body">
+                <div class="card-body dashboard-container">
 
                 </div>
             </div>
@@ -62,7 +62,7 @@
             </div>
             <div class="card outer-outline">
 
-                <div class="card-body">
+                <div class="card-body dashboard-container">
                     <div class="row">
                         <div class="col-md-4">
                             <img class="dash_image" src="~/Images/avatar.png" />
@@ -87,14 +87,35 @@
         </div>
         <div class="col-md-6 mb-3">
             <div class="card-header dash-header">
-               Report
+                Report
             </div>
             <div class="card outer-outline">
 
-                <div class="card-body">
+                <div class="card-body container dashboard-container" style=" display: block; margin-left: auto; margin-right: auto; width: 50%;">
+                    <img src="~/Images/file.png" style="width:200px; height:170px; " /><br />
+                    @if (!Model.HasStaff)
+                    {
+                        <a class="btn btn-primary text-white mt-5 disabled">Upload Image</a>
 
+                    }
+                    else
+                    {
+                        <a class="btn btn-primary text-white mt-5 ">Upload Image</a>
+
+                    }
                 </div>
             </div>
+            @if (!Model.HasStaff)
+            {
+
+                <p class="font-italic">Note: you are not assigned to any supervisor, hence you cannot submit reports</p>
+            }
+            else
+            {
+                <div class="btn btn-primary w-25">
+                    submit
+                </div>
+            }
         </div>
     </div>
 

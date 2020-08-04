@@ -137,25 +137,25 @@ namespace Cusrim.Controllers
 
         public ActionResult Dashboard()
         {
-            var userId = Session["id"];
-            var facultyStatus = false;
-            var studentInDb = _studentContext.GetByUserId(Convert.ToInt64(userId));
-            var faculty = new Faculty();
-           if(studentInDb?.FacultyId != null)
-            {
-                facultyStatus = true;
-                faculty = _facultyContext.Get(Convert.ToInt64(studentInDb.FacultyId));
-            }
+                var userId = Session["id"];
+                var facultyStatus = false;
+                var studentInDb = _studentContext.GetByUserId(Convert.ToInt64(userId));
+                var faculty = new Faculty();
+               if(studentInDb?.FacultyId != null)
+                {
+                    facultyStatus = true;
+                    faculty = _facultyContext.Get(Convert.ToInt64(studentInDb.FacultyId));
+                }
 
-            var viewModel = new StudentDashboard
-            {
-                HasStaff = facultyStatus,
-                Student = studentInDb,
-                Faculty = faculty
+                var viewModel = new StudentDashboard
+                {
+                    HasStaff = facultyStatus,
+                    Student = studentInDb,
+                    Faculty = faculty
              
-            };
+                };
 
-            return View(viewModel);
+                return View(viewModel);
         }
     }
 }

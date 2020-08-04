@@ -37,9 +37,9 @@ namespace Cusrim.Controllers
                     return RedirectToAction("Dashboard", "Faculty");
                 }
             }
-
-            ViewBag.msg = "Incorrect Username or Password";
-            return View("LoginForm");
+            TempData["message"] = "Incorrect Username or Password";
+            
+            return RedirectToAction("Index", "Home");
 
         }
 

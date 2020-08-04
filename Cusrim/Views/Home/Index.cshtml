@@ -4,6 +4,12 @@
     ViewBag.Title = "Home Page";
 }
 
+@if (TempData["message"] != null)
+{
+    <div class=" alert alert-danger">
+        <strong>@TempData["message"]</strong>
+    </div>
+}
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4  bg-white border-bottom " , style="height:80px;">
     <span> <img src="~/Images/cap.png" class="small_img  mr-3" /></span>
     <h1 class="my-0 mr-md-auto font-weight-normal">CUSRiM</h1>
@@ -415,3 +421,4 @@
         </div>
     </div>
 </div>
+

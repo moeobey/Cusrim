@@ -13,6 +13,11 @@ namespace Cusrim.Controllers
     {
         private readonly UserLogic _context = new UserLogic();
         private readonly FacultyLogic _facultyContext = new FacultyLogic();
+        private readonly StudentLogic _studentContext = new StudentLogic();
+        private readonly ReportLogic _reportContext = new ReportLogic();
+
+
+
         // GET: Faculty
         public ActionResult Index()
         {
@@ -193,7 +198,43 @@ namespace Cusrim.Controllers
         }
         public ActionResult Dashboard()
         {
-            return View();
+            var userId = Session["id"];
+            var facultyStatus = false;
+            var facultyInDb = _facultyContext.GetByUserId(Convert.ToInt64(userId));
+            if (facultyInDb?.StudentCount >0)
+            {
+                facultyStatus = true;
+            }
+            var reports = _reportContext.GetReports(facultyInDb.Id);
+            var viewModel = new FacultyDashboard
+            {
+                HasStudent = facultyStatus,
+                Students = _studentContext.GetAll(),
+                Supeprvisees = _studentContext.GetSupervisees(facultyInDb.Id),
+                Faculty = facultyInDb,
+                Reports = reports.Take(4)
+
+            };
+
+            return View(viewModel);
+        }
+        public ActionResult ViewStudents()
+        {
+            var students = _studentContext.GetAll();
+            return View(students);
+        }
+        public ActionResult Attach( long id)
+        {
+           
+            var userId = Session["id"];
+            var studentInDb = _studentContext.Get(Convert.ToInt64(id));
+            studentInDb.FacultyId = _facultyContext.GetByUserId(Convert.ToInt64(userId)).Id;
+            var student = new Student
+            {
+                FacultyId = _facultyContext.GetByUserId(Convert.ToInt64(userId)).Id
+            };
+            _studentContext.Update(student);
+            return RedirectToAction("ViewStudents");
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿
-
+@model Cusrim.Core.ViewModels.FacultyDashboard
 
 @{
     ViewBag.Title = "Info";
@@ -11,27 +11,41 @@
 <div class="container">
     <div class="outer-outline">
         <div class="row ">
-            <div class="col-md-6 mb-3">
+            <div class="col-md-6 mb-3 ">
                 <div class="card-header dash-header">
                     Assigned Students
                 </div>
                 <div class="card outer-outline">
 
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <img class="dash_image" src="~/Images/avatar.png" />
-                            </div>
-                            <div class="col-md-8">
-                                <p>Name</p>
-                                <h4>Name</h4>
-                                <p>Name</p>
-                                <h4>Name</h4> <p>Name</p>
-                                <h4>Name</h4> <p>Name</p>
-                                <h4>Name</h4>
-                            </div>
-                        </div>
+                    <div class="card-body dashboard-container">
+                        @if (!Model.HasStudent)
+                        {
+                            <p>You are not currently not assigned to a student</p>
+                        }
+                        else
+                        {
+
+
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img class="dash_image" src="~/Images/avatar.png" />
+                                </div>
+                                <div class="col-md-4">
+                                    <img class="dash_image" src="~/Images/avatar.png" />
+                                </div>
+                                <div class="col-md-4">
+                                    <img class="dash_image" src="~/Images/avatar.png" />
+                                </div>
+                                <div class="col-md-4">
+                                    <img class="dash_image" src="~/Images/avatar.png" />
+                                </div>
+
+                            </div>                      
+                        <a class="float-right">View All</a>
+                        }
                     </div>
+                    
                 </div>
             </div>
             <div class="col-md-6 mb-3">
@@ -40,44 +54,87 @@
                 </div>
                 <div class="card outer-outline">
 
-                    <div class="card-body">
-
+                    <div class="card-body dashboard-container">
+                      
                     </div>
                 </div>
             </div>
         </div>
         <div class="row ">
-            <div class="col-md-6 mb-3">
+            <div class="col-md-12  mb-3">
                 <div class="card-header dash-header">
                     Company Approved Students
                 </div>
                 <div class="card outer-outline">
 
-                    <div class="card-body">
+                    <div class="card-body dashboard-container">
+                        <div class="row">
+                            @foreach (var student in Model.Students)
+                            {
+
+                                <div class="col-md-3 text-center">
+                                    <img class="dash_image" src="~/Images/avatar.png" />
+                                    <p>@student.Name&nbsp;@student.MatricNo <br /> @student.Department</p>
+                                </div>
+
+                            }
+                        </div>
+
 
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6 mb-3">
-                <div class="card-header dash-header">
-                    Reports
-                </div>
-                <div class="card outer-outline">
-
-                    <div class="card-body">
-
+                    <div class="btn btn-info text-white">
+                        @Html.ActionLink("ViewStudents", "ViewStudents", "Faculty")
+                       
                     </div>
                 </div>
+                
             </div>
+         
         </div>
         <div class="row ">
-            <div class="col-md-6 mb-3">
+            <div class="col-md-12 mb-3">
                 <div class="card-header dash-header">
-                    Company Approved Students
+                   Reports
                 </div>
                 <div class="card outer-outline">
 
-                    <div class="card-body">
+                    <div class="card-body dashboard-container">
+
+
+                        @if (Model.Reports.Count() <=0 )
+                        {
+                            <p>You have no reports at the moment. attached to a student to get reports</p>
+                        }
+                        else
+                        {
+
+                            <table class="table report table-borderless  table-hover">
+                                <thead>
+                                    <tr>
+                                        <th><h2 class="badge-dark"></h2></th>
+                                        <th>File Name</th>
+                                        <th>Sent By</th>
+                                        <th>Uploaded at</th>
+                                        <th>action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                              
+                                    @foreach (var report in Model.Reports)
+                                    {
+
+                                    <tr>
+                                        <td>@report.Name</td>
+                                        <td>@report.Student.Name</td>
+                                        <td>@report.CreatedAt</td>
+                                        <td><i class="navbar-toggler-icon"></i></td>
+
+                                    </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        }
 
                     </div>
                 </div>
@@ -88,8 +145,19 @@
                 </div>
                 <div class="card outer-outline">
 
-                    <div class="card-body">
-
+                    <div class="card-body dashboard-container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img class="dash_image" src="~/Images/avatar.png" />
+                            </div>
+                            <div class="col-md-8">
+                                <h4>Name</h4>
+                                <p>@Model.Faculty.Name</p>
+                                <h4>Phone Number</h4> <p>@Model.Faculty.PhoneNumber</p>
+                                <h4>Email</h4> <p>@Model.Faculty.Email</p>
+                                <h4>Department</h4> <p>@Model.Faculty.Department</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
