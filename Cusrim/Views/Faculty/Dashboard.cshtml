@@ -24,28 +24,25 @@
                         }
                         else
                         {
-
-
-
                             <div class="row">
-                                <div class="col-md-4">
-                                    <img class="dash_image" src="~/Images/avatar.png" />
-                                </div>
-                                <div class="col-md-4">
-                                    <img class="dash_image" src="~/Images/avatar.png" />
-                                </div>
-                                <div class="col-md-4">
-                                    <img class="dash_image" src="~/Images/avatar.png" />
-                                </div>
-                                <div class="col-md-4">
-                                    <img class="dash_image" src="~/Images/avatar.png" />
-                                </div>
+                                @foreach (var student in Model.Supeprvisees)
+                                {
 
-                            </div>                      
-                        <a class="float-right">View All</a>
+                                    <div class="col-md-3 text-center">
+                                        <img class="dash_image" src="~/Images/avatar.png" />
+                                        <p>@student.Name&nbsp;@student.MatricNo <br /> @student.Department</p>
+                                    </div>
+                                }
+                            </div>
+
+
                         }
                     </div>
-                    
+                    <div class="btn btn-info text-white">
+                        @Html.ActionLink("View All", "ViewAttached", "Faculty")
+
+                    </div>
+
                 </div>
             </div>
             <div class="col-md-6 mb-3">
@@ -83,7 +80,7 @@
 
                     </div>
                     <div class="btn btn-info text-white">
-                        @Html.ActionLink("ViewStudents", "ViewStudents", "Faculty")
+                        @Html.ActionLink("View Students", "ViewStudents", "Faculty")
                        
                     </div>
                 </div>
@@ -124,11 +121,11 @@
                                     {
 
                                     <tr>
+                                        <td><img src="~/Images/file.png" style="height:30px; width:30px"></td>
                                         <td>@report.Name</td>
                                         <td>@report.Student.Name</td>
                                         <td>@report.CreatedAt</td>
-                                        <td><i class="navbar-toggler-icon"></i></td>
-
+                                        <td>   @Html.ActionLink("View", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-pencil table_extra" })</td>
                                     </tr>
                                     }
 

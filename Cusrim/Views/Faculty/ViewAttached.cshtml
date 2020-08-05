@@ -14,7 +14,7 @@
 }
 
 <div class="container">
-    <h3>STUDENTS</h3>
+    <h3>YOUR SUPERVISEES</h3>
 
     <table id="table" class="table table-bordered table-hover">
         <thead>
@@ -25,7 +25,6 @@
                 <th>Level</th>
                 <th>Grade</th>
 
-                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -40,16 +39,7 @@
                     <td>@student.Level</td>
 
                     <td>@student.Grade</td>
-                    <td>
-                        @if (student.FacultyId == null)
-                        {
-                            <div class="pull-left">
-                                @Html.ActionLink("Attach", "Attach", "Faculty", new { id = student.Id }, new { @class = "fa fa-pencil table_extra" })
-                            </div>
-                        }
-
-
-                    </td>
+                   
                 </tr>
 
             }

@@ -22,6 +22,11 @@ namespace Cusrim.Data
             var report = _context.Reports.Where(u => u.FacultyId == facultyId ).Include(c=>c.Student);
             return report;
         }
-
+        public IEnumerable<Report> GetByStudentId(long studentId)
+        {
+            var report = _context.Reports.Where(u => u.StudentId == studentId);
+            return report;
+        }
+        
     }
 }

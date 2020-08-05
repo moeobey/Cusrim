@@ -30,7 +30,6 @@
                                         <img class="dash_image" src="~/Images/avatar.png" />
                                     </div>
                                     <div class="col-md-8">
-                                        <p>@Model.Faculty.Name</p>
                                         <h4>Name</h4>
                                         <p>@Model.Faculty.Name</p>
                                         <h4>Phone Number</h4> <p>@Model.Faculty.PhoneNumber</p>
@@ -55,68 +54,130 @@
             </div>
         </div>
     </div>
-    <div class="row ">
-        <div class="col-md-6 mb-3">
-            <div class="card-header dash-header">
-                Profile
-            </div>
-            <div class="card outer-outline">
+        <div class="row ">
+            <div class="col-md-6 mb-3">
+                <div class="card-header dash-header">
+                    Profile
+                </div>
+                <div class="card outer-outline">
 
-                <div class="card-body dashboard-container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <img class="dash_image" src="~/Images/avatar.png" />
-                        </div>
-                        <div class="col-md-8">
+                    <div class="card-body dashboard-container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img class="dash_image" src="~/Images/avatar.png" />
+                            </div>
+                            <div class="col-md-8">
 
-                            <h4>Name</h4>
-                            <p>@Model.Student.Name</p>
-                            <h4>Matric Number</h4> <p>@Model.Student.MatricNo</p>
-                            <h4>Email</h4> <p>@Model.Student.Email</p>
-                            <h4>Department</h4> <p>@Model.Student.Department</p>
-                            <h4>Level</h4> <p>@Model.Student.Level</p>
-                            <h4>Grade</h4> <p>@Model.Student.Grade</p>
+                                <h4>Name</h4>
+                                <p>@Model.Student.Name</p>
+                                <h4>Matric Number</h4> <p>@Model.Student.MatricNo</p>
+                                <h4>Email</h4> <p>@Model.Student.Email</p>
+                                <h4>Department</h4> <p>@Model.Student.Department</p>
+                                <h4>Level</h4> <p>@Model.Student.Level</p>
+                                <h4>Grade</h4> <p>@Model.Student.Grade</p>
 
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="btn btn-primary w-25">
-                    edit
+                    <div class="btn btn-primary w-25">
+                        edit
+                    </div>
                 </div>
             </div>
+            <div class="col-md-6 mb-3">
+                <div class="card-header dash-header">
+                    Report
+                </div>
+                <div class="card outer-outline">
+
+                    <div class="card-body container dashboard-container" style=" display: block; margin-left: auto; margin-right: auto; width: 50%;">
+                        <img src="~/Images/file.png" style="width:200px; height:170px; " /><br />
+                        @if (!Model.HasStaff)
+                        {
+                            <a class="btn btn-primary text-white mt-5 disabled">Upload Image</a>
+
+                        }
+                        else
+                        {
+                            <a data-toggle="modal" data-target="#reportForm" class="btn btn-primary text-white mt-5 ">Upload Image</a>
+
+                        }
+                    </div>
+                </div>
+                @if (!Model.HasStaff)
+                {
+
+                    <p class="font-italic">Note: you are not assigned to any supervisor, hence you cannot submit reports</p>
+                }
+
+            </div>
+            <div class="col-md-12 mb-3">
+                <div class="card-header dash-header">
+                    Your Reports
+                </div>
+                <div class="card outer-outline">
+
+                    <div class="card-body container dashboard-container">
+                        <table class="table report table-borderless  table-hover">
+                            <thead>
+                                <tr>
+                                    <th><h2 class="badge-dark"></h2></th>
+                                    <th>File Name</th>
+                                    <th>Uploaded at</th>
+                                    <th>action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var report in Model.Reports)
+                                {
+
+                                    <tr>
+                                        <td><img src="~/Images/file.png" style="height:30px; width:30px"></td>
+                                        <td>@report.Name</td>
+                                        <td>@report.CreatedAt</td>
+                                        <td>   @Html.ActionLink("View", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-pencil table_extra" })</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                    </div>
         </div>
-        <div class="col-md-6 mb-3">
-            <div class="card-header dash-header">
-                Report
-            </div>
-            <div class="card outer-outline">
 
-                <div class="card-body container dashboard-container" style=" display: block; margin-left: auto; margin-right: auto; width: 50%;">
-                    <img src="~/Images/file.png" style="width:200px; height:170px; " /><br />
-                    @if (!Model.HasStaff)
-                    {
-                        <a class="btn btn-primary text-white mt-5 disabled">Upload Image</a>
-
-                    }
-                    else
-                    {
-                        <a class="btn btn-primary text-white mt-5 ">Upload Image</a>
-
-                    }
-                </div>
-            </div>
-            @if (!Model.HasStaff)
-            {
-
-                <p class="font-italic">Note: you are not assigned to any supervisor, hence you cannot submit reports</p>
-            }
-            else
-            {
-                <div class="btn btn-primary w-25">
-                    submit
-                </div>
-            }
-        </div>
+</div>
     </div>
 
+<div class="modal fade" id="reportForm" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Upload Report</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+
+                @using (Html.BeginForm("Report", "Student", null, FormMethod.Post,
+                              new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+                  
+                    @Html.TextBoxFor(m => m.Report.Name, new { @class = "form-control text-center", placeholder = "Enter report title", required = "required" })
+                    <br />
+                    <div class="editor-field">
+                        <input id="ImagePath" title="Upload an image of your report"
+                               type="file" name="file" />
+                    </div>
+                    <p><input type="submit" class="btn btn-primary" value="Save" /></p>
+                }
+
+            </div>
+
+        </div>
+    </div>
 </div>

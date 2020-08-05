@@ -1,0 +1,23 @@
+﻿@model Cusrim.Core.Models.Report
+
+@{
+    ViewBag.Title = "ReportDetails";
+}
+
+@{
+    Html.RenderPartial("../Navbar");
+}
+
+
+    <div class="container" style=" display: block; margin-left: auto; margin-right: auto; width: 50%;">
+        <div>
+            <h5>Name: @Model.Name</h5>
+        </div>
+        <div>
+            <img src="~/Images/@Model.ImageUrl" />
+
+        </div>
+        <a class="bottomNav" onclick="history.go(-1); return false;" href="#">Back</a>
+        <br />
+    </div>
+

@@ -17,6 +17,32 @@ namespace Cusrim.logic
           return   _db.GetReports(facultyId);
 
         }
+        public Report Get(long id)
+        {
+            var values = _db.Get(id);
+            return values;
+        }
+        public void Update(Report faculty)
+        {
+            _db.Save(faculty);
+        }
+
+        public void Save(Report faculty)
+        {
+            _db.Add(faculty);
+            _db.Save(faculty);
+        }
+        public IEnumerable<Report> GetAll()
+        {
+            var values = _db.GetAll();
+            return values;
+        }
+        public IEnumerable<Report> GetByStudentId(long id)
+        {
+            var values = _db.GetByStudentId(id);
+            return values;
+        }
+        
 
     }
 }

@@ -223,17 +223,34 @@ namespace Cusrim.Controllers
             var students = _studentContext.GetAll();
             return View(students);
         }
-        public ActionResult Attach( long id)
+        public ActionResult ViewAttached()
+        {
+            var userId = Convert.ToInt64(Session["id"]);
+            var facultyId = _facultyContext.GetByUserId(userId).Id;
+
+            var students = _studentContext.GetSupervisees(facultyId);
+            return View(students);
+        }
+        public ActionResult Attach( int id)
         {
            
-            var userId = Session["id"];
+            var userId =Convert.ToInt64(Session["id"]);
             var studentInDb = _studentContext.Get(Convert.ToInt64(id));
             studentInDb.FacultyId = _facultyContext.GetByUserId(Convert.ToInt64(userId)).Id;
             var student = new Student
             {
                 FacultyId = _facultyContext.GetByUserId(Convert.ToInt64(userId)).Id
             };
+            var facultyInDb = _facultyContext.GetByUserId(userId);
+            var faculty = new Faculty
+            {
+                StudentCount = facultyInDb.StudentCount++
+            };
+            facultyInDb.StudentCount++;
+            _facultyContext.Update(faculty);
             _studentContext.Update(student);
+            TempData["message"] = "Student Attached Successfully";
+
             return RedirectToAction("ViewStudents");
         }
     }

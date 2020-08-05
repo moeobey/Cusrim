@@ -15,6 +15,7 @@ namespace Cusrim.Controllers
         private readonly StudentLogic _studentContext = new StudentLogic();
 
         private readonly FacultyLogic _facultyContext = new FacultyLogic();
+        private readonly ReportLogic _reportContext = new ReportLogic();
 
 
         // GET: Student
@@ -67,7 +68,26 @@ namespace Cusrim.Controllers
             return View("LoginForm");
 
         }
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Report(Report report, HttpPostedFileBase file)
+        {
+            var userId= Convert.ToInt64(Session["id"]);
+            var student = _studentContext.GetByUserId(userId);
+            if (file != null)
+            {
+                file.SaveAs(HttpContext.Server.MapPath("~/Images/")
+                                                      + file.FileName);
+                report.ImageUrl = file.FileName;
+            }
+            report.CreatedAt = DateTime.Now;
+            report.StudentId = student.Id;
+            report.FacultyId = student.FacultyId;
+            _reportContext.Save(report);
+            //db.Image.Add(img);
+            //db.SaveChanges();
+            return RedirectToAction("Dashboard");
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult RegisterUser(StudentRegistration studentRegistration)
@@ -146,16 +166,28 @@ namespace Cusrim.Controllers
                     facultyStatus = true;
                     faculty = _facultyContext.Get(Convert.ToInt64(studentInDb.FacultyId));
                 }
-
+            var reports = _reportContext.GetByStudentId(studentInDb.Id);
                 var viewModel = new StudentDashboard
                 {
                     HasStaff = facultyStatus,
                     Student = studentInDb,
-                    Faculty = faculty
+                    Faculty = faculty,
+                    Report = new Report(),
+                    Reports = reports
+                   
              
                 };
 
                 return View(viewModel);
+        }
+        public ActionResult ViewReport()
+        {
+            return View();
+        }
+        public ActionResult ReportDetails(int id)
+        {
+            var report = _reportContext.Get(id);
+            return View(report);
         }
     }
 }

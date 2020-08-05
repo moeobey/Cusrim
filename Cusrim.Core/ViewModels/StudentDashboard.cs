@@ -11,6 +11,9 @@ namespace Cusrim.Core.ViewModels
     {
         public Student Student { get; set; }
         public Faculty Faculty { get; set; }
+
+        public Report Report { get; set; }
+        public IEnumerable<Report> Reports { get; set; }
         public bool HasStaff { get; set; }
     }
 }
