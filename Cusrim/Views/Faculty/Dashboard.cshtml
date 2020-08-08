@@ -52,7 +52,23 @@
                 <div class="card outer-outline">
 
                     <div class="card-body dashboard-container">
-                      
+                        <table class="table report table-borderless  table-hover">
+
+                            <tbody>
+
+                                @foreach (var report in Model.Reports)
+                                {
+
+                                    <tr>
+                                        <td>@report.Student.Name has uploaded report</td>
+                                        <td>@report.Name</td>
+                                        <td>@report.CreatedAt.ToLongDateString()</td>
+                                        <td>   @Html.ActionLink("View", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-pencil table_extra" })</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

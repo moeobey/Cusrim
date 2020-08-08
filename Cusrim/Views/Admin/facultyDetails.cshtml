@@ -1,0 +1,29 @@
+﻿@model Cusrim.Core.Models.Faculty
+@{
+    ViewBag.Title = "facultyDetails";
+}
+
+
+@{
+    Html.RenderPartial("../Navbar");
+}
+
+<h2>@Model.Name</h2>
+<div class="container" style=" display: block; margin-left: auto; margin-right: auto; width: 50%;">
+    <div>
+        <h5>Name: @Model.Name</h5>
+    </div>
+    <div>
+        <h5>Staff Number: @Model.StaffNo</h5>
+    </div>  <div>
+        <h5>Department: @Model.Department</h5>
+    </div>  <div>
+        <h5>Email: @Model.Email</h5>
+    </div>
+    <div>
+        <h5>Phone Number: @Model.PhoneNumber</h5>
+    </div>
+    
+    <a class="bottomNav" onclick="history.go(-1); return false;" href="#">Back</a>
+    <br />
+</div>

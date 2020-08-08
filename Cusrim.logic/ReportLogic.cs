@@ -14,7 +14,7 @@ namespace Cusrim.logic
 
         public IEnumerable<Report> GetReports(long facultyId)
         {
-          return   _db.GetReports(facultyId);
+          return   _db.GetReports(facultyId).OrderByDescending(x => x.Id); ;
 
         }
         public Report Get(long id)
@@ -39,10 +39,15 @@ namespace Cusrim.logic
         }
         public IEnumerable<Report> GetByStudentId(long id)
         {
-            var values = _db.GetByStudentId(id);
+            var values = _db.GetByStudentId(id).OrderByDescending(x => x.Id); ;
             return values;
         }
-        
+
+        public IEnumerable<Report> GetAllReports ()
+        {
+            var values = _db.GetAllReports().OrderByDescending(x => x.Id); ;
+            return values;
+        }
 
     }
 }

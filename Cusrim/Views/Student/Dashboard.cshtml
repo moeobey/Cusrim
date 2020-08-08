@@ -49,7 +49,23 @@
             <div class="card outer-outline">
 
                 <div class="card-body dashboard-container">
+                    <table class="table report table-borderless  table-hover">
+                       
+                        <tbody>
 
+                            @foreach (var report in Model.Reports)
+                            {
+
+                                <tr>
+                                    <td>Report upload successful</td>
+                                    <td>@report.Name</td>
+                                    <td>@report.CreatedAt</td>
+                                    <td>   @Html.ActionLink("View", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-pencil table_extra" })</td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -79,9 +95,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="btn btn-primary w-25">
-                        edit
-                    </div>
+                 
                 </div>
             </div>
             <div class="col-md-6 mb-3">

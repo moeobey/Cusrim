@@ -28,7 +28,7 @@ namespace Cusrim.logic
         }
         public IEnumerable<Student> GetAll()
         {
-            var values = _db.GetAll();
+            var values = _db.GetAll().OrderByDescending(x => x.Id); ;
             return values;
         }
         public bool MatricIsUnique(string username)
@@ -47,7 +47,7 @@ namespace Cusrim.logic
         }
         public IEnumerable<Student> GetSupervisees(long facultyId)
         {
-            return _db.GetSupervisees(facultyId);
+            return _db.GetSupervisees(facultyId).OrderByDescending(x => x.Id); ;
         }
     }
 }

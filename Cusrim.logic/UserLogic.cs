@@ -29,7 +29,7 @@ namespace Cusrim.logic
         }
         public IEnumerable<User> GetAll()
         {
-            var values = _db.GetAll();
+            var values = _db.GetAll().OrderByDescending(x => x.Id); ;
             return values;
         }
         public long GetLast()

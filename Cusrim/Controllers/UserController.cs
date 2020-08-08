@@ -31,10 +31,14 @@ namespace Cusrim.Controllers
                 {
                     return RedirectToAction("Dashboard", "Student");
                 }
-                else
+                else if((string)Session["Role"] == $"faculty")
                 {
 
                     return RedirectToAction("Dashboard", "Faculty");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Admin");
                 }
             }
             TempData["message"] = "Incorrect Username or Password";

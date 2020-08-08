@@ -28,7 +28,7 @@ namespace Cusrim.logic
         }
         public IEnumerable<Faculty> GetAll()
         {
-            var values = _db.GetAll();
+            var values = _db.GetAll().OrderByDescending(x => x.Id); ;
             return values;
         }
         public bool StaffNoIsUnique(string username)
