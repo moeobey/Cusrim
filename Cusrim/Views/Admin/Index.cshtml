@@ -102,7 +102,7 @@
         <div class="row ">
             <div class="col-md-6 mb-3">
                 <div class="card-header dash-header">
-                    <h4>REPORTS</h4>
+                    <h4>UPLOADS</h4>
                 </div>
                 <div class="card outer-outline">
 
@@ -112,7 +112,8 @@
                                 <tr>
                                     
                                     <th>File Name</th>
-                                    <th>Stuents Name</th>
+                                    <th>Sent By</th>
+                                    <th>Recieved By</th>
                                     <th>Uploaded at</th>
                                     
                                     <th>action</th>
@@ -127,7 +128,8 @@
                                         
                                         <td>@report.Name</td>
                                         <td>@report.Student.Name</td>
-                                        <td>@report.CreatedAt</td>
+                                        <td>@report.Faculty.Name</td>
+                                        <td>@report.CreatedAt.ToLongDateString()</td>
                                         <td>   @Html.ActionLink("View", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-pencil table_extra" })</td>
                                     </tr>
                                 }

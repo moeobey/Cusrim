@@ -29,7 +29,7 @@ namespace Cusrim.Data
         }
         public IEnumerable<Report> GetAllReports()
         {
-            var report = _context.Reports.Include(c => c.Student);
+            var report = _context.Reports.Include(c => c.Student).Include(c=>c.Faculty);
             return report;
         }
         
