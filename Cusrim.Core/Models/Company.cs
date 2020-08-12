@@ -18,6 +18,6 @@ namespace Cusrim.Core.Models
         public string ContactNo { get; set; }
         public string Website { get; set; }
         public DateTime CreatedAt { get; set; }
-        public int MyProperty { get; set; }
+   
     }
 }
