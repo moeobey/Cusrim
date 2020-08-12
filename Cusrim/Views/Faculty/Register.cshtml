@@ -1,0 +1,62 @@
+﻿
+
+@using System.Web.Optimization
+@model Cusrim.Core.ViewModels.FacultyRegistration
+
+
+
+@{
+    ViewBag.Title = "Register";
+}
+
+
+
+<div class="row">
+    <div class="col-md-8">
+        <div>
+            <img src="~/Images/Faculty.jpg" class="register_img" />
+            <div class="register_text">
+                <span> <img src="~/Images/Cap.png" class="small_img  mr-2" /></span>CUSRiM
+                <br />
+                <br /><br /><br /><br />
+                <h2 class="mb-5 font-weight-bold">MONITOR, FOLLOW UP AND SUPERVISE <br /> ALL ASSIGNED SIWES STUDENTS</h2>
+                <p class="font-weight-light"> As the assigned supervisor to a list of students,<br /> you have access to view their profiles, and<br /> ability to request for their SIWES reports.</p>
+            </div>
+
+        </div>
+        <div>
+
+
+        </div>
+    </div>
+    <div class="col-md-4">
+
+
+        @using (Html.BeginForm("RegisterUser", "Faculty", FormMethod.Post, new { @class = "form-signin" }))
+
+        {
+            <img class="mb-4 text-center align_center" src="~/Images/social-media (1).png" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 text-center font-weight-bold">WELCOME BACK</h1>
+            <label for="inputEmail" class="sr-only">Email address</label>
+            @Html.TextBoxFor(m => m.Faculty.Email, new { @class = "form-control", placeholder = "Email", required = "required", type = "email" })
+
+
+            <label for="inputEmail" class="sr-only">Matric Number</label>
+            @Html.TextBoxFor(m => m.Faculty.StaffNo, new { @class = "form-control", placeholder = "Staff Number", required = "required", })
+
+
+            <label for="inputPassword" class="sr-only">Password</label>
+            @Html.PasswordFor(m => m.User.password, new { @class = "form-control", placeholder = "password", required = "required" })
+
+            @*<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>*@
+            <div class="checkbox mb-3">
+                @Html.AntiForgeryToken()
+                <button class="btn w-75 text-center align_center btn-block bg_yellow" type="submit">Register</button>
+            </div>
+
+
+        }
+    </div>
+
+</div>
+

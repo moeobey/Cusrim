@@ -1,0 +1,238 @@
+﻿@model Cusrim.Core.ViewModels.AdminDashboard
+@{
+    ViewBag.Title = "Index";
+}
+
+@{
+    Html.RenderPartial("../Navbar");
+}
+<div class="container">
+    <div class="outer-outline">
+        <div class="row ">
+            <div class="col-md-6 mb-3">
+                <div class="card-header dash-header">
+                    <h4>STUDENTS</h4>
+                </div>
+                <div class="card outer-outline">
+                    <div class="card-body dashboard-container">
+                        @if (Model.Student == null)
+                        {
+                            <p>You currently have no students</p>
+                        }
+                        else
+                        {
+                            <table class="table report table-borderless  table-hover">
+                                <thead>
+                                    <tr>
+                                        
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var student in Model.Student)
+                                    {
+
+                                        <tr>
+                                            
+                                            <td>@student.Name</td>
+                                            <td>@student.Email</td>
+                                            <td>   @Html.ActionLink("View", "studentDetails", "Admin", new { id = student.Id }, new { @class = "fa fa-pencil table_extra" })</td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+
+
+
+
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="card-header dash-header">
+                    <h4>FACULTY</h4>
+                </div>
+                <div class="card outer-outline">
+
+                    <div class="card-body dashboard-container">
+                        @if (Model.Faculty == null)
+                        {
+                            <p>You currently have no faculty</p>
+                        }
+                        else
+                        {
+                            <table class="table report table-borderless  table-hover">
+                                <thead>
+                                    <tr>
+                                        
+                                        <th>Name</th>
+                                        <th>Email
+                                        <th>action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var faculty in Model.Faculty)
+                                    {
+
+                                        <tr>
+                                            
+                                            <td>@faculty.Name</td>
+                                            <td>@faculty.Email</td>
+                                            <td>   @Html.ActionLink("View", "facultyDetails", "Admin", new { id = faculty.Id }, new { @class = "fa fa-pencil table_extra" })</td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+
+
+
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-6 mb-3">
+                <div class="card-header dash-header">
+                    <h4>UPLOADS</h4>
+                </div>
+                <div class="card outer-outline">
+
+                    <div class="card-body dashboard-container">
+                        <table class="table report table-borderless  table-hover">
+                            <thead>
+                                <tr>
+                                    
+                                    <th>File Name</th>
+                                    <th>Sent By</th>
+                                    <th>Recieved By</th>
+                                    <th>Uploaded at</th>
+                                    
+                                    <th>action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var report in Model.Report)
+                                {
+
+                                    <tr>
+                                        
+                                        <td>@report.Name</td>
+                                        <td>@report.Student.Name</td>
+                                        <td>@report.Faculty.Name</td>
+                                        <td>@report.CreatedAt.ToLongDateString()</td>
+                                        <td>   @Html.ActionLink("View", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-pencil table_extra" })</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                 
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="card-header dash-header">
+                    <h4>COMPANY</h4>
+                </div>
+                <div class="card outer-outline">
+
+                    <div class="card-body container dashboard-container">
+                        @if (Model.Company.Count() <= 0)
+                        {
+                            <p>
+                                There is no company attached, please add a compnay
+                            </p>
+                        }
+                        else
+                        {
+                            <table class="table report table-borderless  table-hover">
+                                <thead>
+                                    <tr>
+
+                                        <th>Name</th>
+                                        <th>Location</th>
+                                        <th>action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var company in Model.Company)
+                                    {
+
+                                        <tr>
+
+                                            <td>@company.Name</td>
+                                            <td>@company.Location</td>
+                                            <td>   @Html.ActionLink("View", "CompanyDetails", "Admin", new { id = company.Id }, new { @class = "fa fa-pencil table_extra" })</td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+
+                        }
+                    </div>
+                    <a data-toggle="modal" data-target="#companyForm" class="btn btn-primary text-white mt-5 ">Add Company</a>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal fade" id="companyForm" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Company</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+
+                        @using (Html.BeginForm("Save", "Admin", FormMethod.Post, new { @class = "form-signin" }))
+
+                        {
+                       
+                            <label for="inputEmail" class="pull-left">Name</label>
+                            @Html.TextBoxFor(m => m.company.Name, new { @class = "form-control", placeholder = "Company Name", required = "required" })
+
+                            <label for="inputPassword" class="">Location</label>
+                            @Html.TextBoxFor(m => m.company.Location, new { @class = "form-control", placeholder = "lcoation e.g lagos", required = "required" })
+                            <label for="inputPassword" class="pull-left">job function</label>
+                            @Html.TextBoxFor(m => m.company.JobFunction, new { @class = "form-control", placeholder = "Job function e.g IT", required = "required" })
+                            <label for="inputPassword" class="pull-left">Email</label>
+                            @Html.TextBoxFor(m => m.company.Email, new { @class = "form-control", placeholder = "Email", required = "required", type = "email" })
+                            <label for="inputPassword" class="pull-left">Address</label>
+                            @Html.TextBoxFor(m => m.company.Address, new { @class = "form-control", placeholder = "Address", required = "required" })
+                            <label for="inputPassword" class="pull-left">Contact Number</label>
+                            @Html.TextBoxFor(m => m.company.ContactNo, new { @class = "form-control", placeholder = "Contact Number", required = "required" })
+                            <label for="inputPassword" class="pull-left">Website link</label>
+                            @Html.TextBoxFor(m => m.company.Website, new { @class = "form-control", placeholder = "web site link e.g www.cusrim.com", required = "required" })
+
+                            <div class="checkbox mb-3">
+                                @Html.AntiForgeryToken()
+                                <button class="btn w-75 text-center align_center btn-block bg_yellow mt-5" type="submit">Save</button>
+                               
+                            </div>
+
+
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>

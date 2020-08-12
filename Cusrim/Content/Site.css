@@ -1,0 +1,238 @@
+﻿body {
+    margin: 0;
+    height: 100%;
+    overflow-x: hidden
+}
+/* Set padding to keep content from hitting the edges */
+.body-content {
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.container {
+    padding: 20px;
+}
+
+.pricing-header {
+    max-width: 700px;
+}
+
+.card-deck .card {
+    min-width: 220px;
+}
+
+h1 {
+    font-weight: bolder
+}
+
+.custom_img {
+    width: 200px;
+    height: 200px;
+}
+
+.card {
+    border: none;
+    padding: 10px;
+}
+
+.br_30 {
+    border-radius: 30px;
+}
+
+.br_10 {
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-weight: bolder;
+    color: #6198CE;
+}
+
+.custom_btn {
+    padding: 15px;
+    border-radius: 30px;
+    background-color: #F7D35F;
+    outline: none;
+    font-weight: bold;
+    color: black;
+}
+
+.padders {
+    padding: 10px 15px 10px 15px;
+    border-radius: 10px;
+}
+
+.bg_grey {
+    background-color: #E5EEF7;
+}
+
+.bg_yellow {
+    background-color: #F7D35F
+}
+
+.bg_cyan {
+    background-color: #FF5F58;
+}
+
+.bg_lightblue {
+    background-color: #E5EEF7
+}
+
+.bg_purple {
+    background-color: #5E54AB;
+}
+
+.home_icon {
+    height: 70px;
+    width: 90px;
+}
+
+.faculty_card {
+    border-radius: 0px;
+    border: 1px solid black;
+}
+
+.faculty_icon {
+    height: 200px;
+    width: 200px;
+    border-radius: 20px;
+}
+
+.custom_padding {
+    margin: 100px;
+}
+
+.info-form {
+    width: 100%;
+    padding: 15px;
+    margin: 0 auto; 
+    border: 1px solid #E5EEF7;
+}
+
+.form-signin {  
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+    .form-signin .checkbox {
+        font-weight: 400;
+    }
+
+    .form-signin .form-control {
+        position: relative;
+        box-sizing: border-box;
+        height: auto;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+        .form-signin .form-control:focus {
+            z-index: 2;
+        }
+
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+.register_img {
+    height: 1000px;
+    ;
+    width: 100%;
+}
+
+.align_center {
+    margin: 0 auto;
+    color: white;
+    display: block
+    /*    ;
+    padding: 10px 80px;
+    border-radius: 15px;
+   */
+}
+
+.register_text {
+    float: left;
+    position: absolute;
+    left: 50px;
+    top: 20px;
+    z-index: 1000;
+    padding: 50px;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 120%
+}
+
+.small_img {
+    width: 50px;
+    height: 50px
+}
+
+.dash-header {
+    background-color: transparent
+}
+
+.outer-outline {
+    border: 1px solid #4880b8;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.dash_image {
+    height: 100px;
+    width: 120px;
+}
+
+.dashboard-container{
+    height:350px;
+overflow-y:auto;
+}
+.footer {
+   
+    text-align: center;
+}

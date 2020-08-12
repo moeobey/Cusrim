@@ -1,0 +1,425 @@
+﻿@model Cusrim.Core.Models.User
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@if (TempData["message"] != null)
+{
+    <div class=" alert alert-danger">
+        <strong>@TempData["message"]</strong>
+    </div>
+}
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4  bg-white border-bottom " , style="height:80px;">
+    <span> <img src="~/Images/cap.png" class="small_img  mr-3" /></span>
+    <h1 class="my-0 mr-md-auto font-weight-bold">CUSRiM</h1>
+    <nav class="my-2 my-md-0 mr-md-3">
+
+
+    </nav>
+    <a class="text-dark btn btn-outline-primary  br_10 mr-4" data-toggle="modal" data-target="#login" href="#"> <b style="color:#6198CE">Faculty</b> </a>
+    <a class=" text-dark btn btn-outline-primary br_10" data-toggle="modal" data-target="#loginStudent" href="#"> <b style="color:#6198CE">Student</b></a>
+    @*<a class="btn btn-outline-primary" href="#">Sign up</a>*@
+</div>
+
+
+
+<section class="jumbotron" style="background-image: url('../../Images/Home.jpg');height: 1000px; border:none; border-radius:0px;">
+    <div class="container">
+
+        <h1 style="font-size:350%; margin-top:150px;" class="text-white">COVENANT UNIVERSITY <br /> SIWES RECRUITMENT & <br /> INDUSTRIAL MONITORING</h1>
+        <h1 style="font-size:150%; margin-top:100px;" class="text-white">GET RECRUITED, SHARPEN YOUR SKILLS & <br /> MONITOR YOUR PROGRESS</h1>
+        <p class="text-white">No stress, simple and  effective</p>
+        <p>
+            <a href="#" data-toggle="modal" data-target="#login" class="btn  br_30 custom_btn btn-primary ">Get Started</a>
+
+        </p>
+    </div>
+</section>
+
+<div class="container  py-5 mt-5 mb-5 p-5">
+    <div class="row">
+        <div class="col-md-12 text-center text-black">
+            <h1>Features</h1>
+            <p>
+                With the request from the school to get placement for your SIWES program
+                with ease and effectiveness. With a support system for faculty
+                to monitor SIWES candidate performance with ease.
+            </p>
+        </div>
+
+        <div class="col-md-12 mt-5">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <img src="~/Images/company.png" class="custom_img" />
+                </div>
+
+                <div class="col-md-8">
+                    <h4>   COMPANY SEARCH </h4>
+                    <p>
+                        Due to the vast amount of companies available on the platform, with ease
+                        you can access all to search for desired company choice where you can
+                        begin you internship.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-12 mt-5">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <img src="~/Images/png.png" class="custom_img" />
+                </div>
+
+                <div class="col-md-8">
+                    <h4>    UPLOAD REPORTS </h4>
+                    <p>
+                        As a SIWES student you can easily send your reports weekly or monthly to
+                        your supervisors for accessment and feedback, that way your internship
+                        progress can be seen.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-12 mt-5">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <img src="~/Images/rocket-hitting-target.png" class="custom_img" />
+                </div>
+
+                <div class="col-md-8">
+                    <h4>   NOTIFICATIONS </h4>
+                    <p>
+                        Get notified when a new feature has arrived, a supervisor has been assigned,
+                        your report upload status and company search status.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="container  text-center">
+    <h1>THREE STEPS</h1>
+    <p>
+        Get started with three easy steps
+    </p>
+
+    <div class="row">
+        <div class="card col-md-4 ">
+            <div class="bg_grey padders">
+                <div class="text-center">
+                    <img src="~/Images/home icon.png" class="home_icon" />
+                    <h5>Visit Site</h5>
+                </div>
+                <div class="card-body">
+                    Go to website, view all features and the steps
+                </div>
+            </div>
+
+        </div>
+        <div class="card col-md-4 ">
+            <div class="bg_grey padders">
+
+                <div class="text-center">
+                    <img src="~/Images/multimedia.png" class="home_icon" />
+
+                    <h5>Register</h5>
+                </div>
+                <div class="card-body">
+                    Login with your Covenant University portal details
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card col-md-4 ">
+            <div class="bg_grey padders">
+
+                <div class="text-center">
+                    <img src="~/Images/dashboard.png" class="home_icon" />
+
+                    <h5>Dashboard</h5>
+                </div>
+                <div class="card-body">
+                    View all activities happening on your profile and dashboard
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+<hr />
+<div class="container   mt-5">
+    <div class="text-center mb-5">
+        <h1>MEET OUR TOP ELITE FACULTY MEMBERS</h1>
+
+        <p>
+            Suggested by students of Covenant University
+        </p>
+    </div>
+
+    <div class="row">
+        <div class="  col-md-4 ">
+            <div class=" faculty_card padders">
+
+                <div class="text-center">
+                    <img src="~/Images/olaniyan.jpeg" class="faculty_icon" />
+
+                </div>
+                <br />
+                <h5>Prof. A.A Olaniyan</h5>
+                Department of Electrical and Information Enginnering
+                <br />
+                <br />
+
+                <p>Covenant University</p>
+                <div class="card-body">
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="  col-md-4 ">
+            <div class=" faculty_card padders">
+
+                <div class="text-center">
+                    <img src="~/Images/dami.jpeg" class="faculty_icon" />
+
+                </div>
+                <br />
+                <h5>Dr. M. Wole Daniels</h5>
+                Department of Electrical and Information Enginnering
+                <br />
+                <br />
+
+                <p>Covenant University</p>
+                <div class="card-body">
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class=" col-md-4 ">
+            <div class=" faculty_card padders">
+
+                <div class="text-center">
+                    <img src="~/Images/talabi.jpeg" class="faculty_icon" />
+
+                </div>
+                <br />
+                <h5>Mrs O.A Afolabi</h5>
+                Department of Electrical and Information Enginnering
+                <br />
+                <br />
+
+                <p>Covenant University</p>
+
+                <div class="card-body">
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+<hr />
+<div class="container   mt-5">
+    <div class="text-center mb-5">
+        <h1>MEET OUR STUDENTS WHO HAVE BEEN ACCEPTED</h1>
+
+        <p>
+            Sugessested by astonishing companies
+        </p>
+    </div>
+
+    <div class="row">
+        <div class="  col-md-4 ">
+            <div class=" faculty_card padders">
+
+                <div class="text-center">
+                    <img src="~/Images/bolu.jpg" class="faculty_icon" />
+
+                </div>
+                <br />
+                <h5>Bolarinwa Sodipo</h5>
+
+                Finance & Accounting department, at MRS
+                Oil & Gas LTD
+
+                <br />
+                <br />
+
+                <p>Accepted 2 month ago</p>
+                <div class="card-body">
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="  col-md-4 ">
+            <div class=" faculty_card padders">
+
+                <div class="text-center">
+                    <img src="~/Images/vanesa.jpg" class="faculty_icon" />
+
+                </div>
+                <br />
+                <h5>Vanessa Chukwuka</h5>
+
+                IT (Information Technology) Department, at
+                Shell Nigeria
+
+                <br />
+                <br />
+
+                <p>Accepted 6 months ago</p>
+                <div class="card-body">
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class=" col-md-4 ">
+            <div class=" faculty_card padders">
+
+                <div class="text-center">
+                    <img src="~/Images/talabii.jpeg" class="faculty_icon" />
+
+                </div>
+                <br />
+                <h5>Titilayo Talabi</h5>
+
+                Construction and Terminal Operation, at
+                Chevron Corporation
+
+                <br />
+                <br />
+
+                <p>Accepted 4 months ago</p>
+
+                <div class="card-body">
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+<hr />
+
+<section class="jumbotron" style="background-image: url('../../Images/Footer.jpg');height: 500px; border:none; border-radius:0px;">
+    <div class="container">
+        <h1 class="text-white">CONTACT US</h1>
+        <p class="lead text-muted">CUSRiM fully known as Covenant University Siwes Recruitment and Industrial Monitoring is here to make 
+        the lives of students and faculty members in Covenant University stressless, simple and effective in order to attain a smooth
+        Siwes training and supervision.
+        </p>
+        <p>
+            <a href="#" class="btn btn-primary my-2">Get Started</a>
+
+        </p>
+    </div>
+</section>
+
+
+
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                @using (Html.BeginForm("AuthenticateUser", "User", FormMethod.Post, new { @class = "form-signin" }))
+
+                {
+                    <img class="mb-4" src="~/Images/cap.png" alt="" width="72" height="72">
+                    <h1 class="h3 mb-3 font-weight-bold">WELCOME BACK</h1>
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Enter Staff ID", required = "required" })
+
+
+                    @*<input type="email" id="inputEmail" class="form-control" placeholder="Matric Number" required autofocus>*@
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    @Html.PasswordFor(m => m.password, new { @class = "form-control", placeholder = "password", required = "required" })
+
+                    @*<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>*@
+                    <div class="checkbox mb-3">
+                        @Html.AntiForgeryToken()
+                        <button class="btn w-75 text-center align_center btn-block bg_yellow" type="submit">Login</button>
+                        @Html.ActionLink("Register", "Register", "Faculty")
+                    </div>
+
+
+                }
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="loginStudent" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+
+                @using (Html.BeginForm("AuthenticateUser", "User", FormMethod.Post, new { @class = "form-signin" }))
+
+                {
+                    <img class="mb-4" src="~/Images/cap.png" alt="" width="72" height="72">
+                    <h1 class="h3 mb-3 font-weight-normal">WELCOME BACK</h1>
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Matric Number", required = "required", type = "email" })
+
+                    @*<input type="email" id="inputEmail" class="form-control" placeholder="Matric Number" required autofocus>*@
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    @Html.PasswordFor(m => m.password, new { @class = "form-control", placeholder = "password", required = "required" })
+
+                    @*<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>*@
+                    <div class="checkbox mb-3">
+                        @Html.AntiForgeryToken()
+                        <button class="btn w-75 text-center align_center btn-block bg_yellow" type="submit">Login</button>
+                        @Html.ActionLink("Register", "Register", "Student")
+                    </div>
+
+
+                }
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+

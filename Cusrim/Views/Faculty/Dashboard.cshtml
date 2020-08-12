@@ -1,0 +1,180 @@
+﻿
+@model Cusrim.Core.ViewModels.FacultyDashboard
+
+@{
+    ViewBag.Title = "Info";
+}
+
+@{
+    Html.RenderPartial("../Navbar");
+}
+<div class="container">
+    <div class="outer-outline">
+        <div class="row ">
+            <div class="col-md-6 mb-3 ">
+                <div class="card-header dash-header">
+                    Assigned Students
+                </div>
+                <div class="card outer-outline">
+
+                    <div class="card-body dashboard-container">
+                        @if (!Model.HasStudent)
+                        {
+                            <p>You are not currently not assigned to a student</p>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                @foreach (var student in Model.Supeprvisees)
+                                {
+
+                                    <div class="col-md-3 text-center">
+                                        <img class="dash_image" src="~/Images/student.jpg" />
+                                        <p>@student.Name&nbsp;@student.MatricNo <br /> @student.Department</p>
+                                    </div>
+                                }
+                            </div>
+
+
+                        }
+                    </div>
+                    <div class="btn btn-info text-white">
+                        @Html.ActionLink("View All", "ViewAttached", "Faculty")
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="card-header dash-header">
+                    Notifications
+                </div>
+                <div class="card outer-outline">
+
+                    <div class="card-body dashboard-container">
+                        <table class="table report table-borderless  table-hover">
+
+                            <tbody>
+
+                                @foreach (var report in Model.Reports)
+                                {
+
+                                    <tr>
+                                        <td>@report.Student.Name has uploaded report</td>
+                                        <td>@report.Name</td>
+                                        <td>@report.CreatedAt.ToLongDateString()</td>
+                                        <td>   @Html.ActionLink("View", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-pencil table_extra" })</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-12  mb-3">
+                <div class="card-header dash-header">
+                    All Available Students
+                </div>
+                <div class="card outer-outline">
+
+                    <div class="card-body dashboard-container">
+                        <div class="row">
+                            @foreach (var student in Model.Students)
+                            {
+
+                                <div class="col-md-3 text-center">
+                                    <img class="dash_image" src="~/Images/WhatsApp Image 2018-06-21 at 7.07.43 PM.jpeg" />
+                                    <p>@student.Name&nbsp;@student.MatricNo <br /> @student.Department</p>
+                                </div>
+
+                            }
+                        </div>
+
+
+                    </div>
+                    <div class="btn btn-info text-white">
+                        @Html.ActionLink("View Students", "ViewStudents", "Faculty")
+                       
+                    </div>
+                </div>
+                
+            </div>
+         
+        </div>
+        <div class="row ">
+            <div class="col-md-12 mb-3">
+                <div class="card-header dash-header">
+                  Uploaded Reports
+                </div>
+                <div class="card outer-outline">
+
+                    <div class="card-body dashboard-container">
+
+
+                        @if (Model.Reports.Count() <=0 )
+                        {
+                            <p>You have no reports at the moment. Attached to a student to get reports</p>
+                        }
+                        else
+                        {
+
+                            <table class="table report table-borderless  table-hover">
+                                <thead>
+                                    <tr>
+                                        <th><h2 class="badge-dark"></h2></th>
+                                        <th>File Name</th>
+                                        <th>Sent By</th>
+                                        <th>Uploaded at</th>
+                                        <th>action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                              
+                                    @foreach (var report in Model.Reports)
+                                    {
+
+                                    <tr>
+                                        <td><img src="~/Images/file.png" style="height:30px; width:30px"></td>
+                                        <td>@report.Name</td>
+                                        <td>@report.Student.Name</td>
+                                        <td>@report.CreatedAt</td>
+                                        <td>   @Html.ActionLink("View", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-pencil table_extra" })</td>
+                                    </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="card-header dash-header">
+                    Faculty Profile
+                </div>
+                <div class="card outer-outline">
+
+                    <div class="card-body dashboard-container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img class="dash_image" src="~/Images/WhatsApp Image 2018-06-22 at 9.43.29 AM.jpeg" />
+                            </div>
+                            <div class="col-md-8">
+                                <h4>Name</h4>
+                                <p>@Model.Faculty.Name</p>
+                                <h4>Phone Number</h4> <p>@Model.Faculty.PhoneNumber</p>
+                                <h4>Email</h4> <p>@Model.Faculty.Email</p>
+                                <h4>Department</h4> <p>@Model.Faculty.Department</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
