@@ -604,6 +604,8 @@
     <Content Include="Views\Admin\studentDetails.cshtml" />
     <Content Include="Views\Admin\ViewFaculty.cshtml" />
     <Content Include="Views\Admin\AttachForm.cshtml" />
+    <Content Include="Views\Admin\ViewStudent.cshtml" />
+    <Content Include="Views\Admin\ViewCompany.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

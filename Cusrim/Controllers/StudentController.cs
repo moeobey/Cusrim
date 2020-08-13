@@ -16,6 +16,7 @@ namespace Cusrim.Controllers
 
         private readonly FacultyLogic _facultyContext = new FacultyLogic();
         private readonly ReportLogic _reportContext = new ReportLogic();
+        private readonly CompanyLogic _companyContext = new CompanyLogic();
 
 
         // GET: Student
@@ -154,7 +155,11 @@ namespace Cusrim.Controllers
 
             return RedirectToAction("Dashboard");
         }
-
+        public ActionResult ViewCompany()
+        {
+            var company = _companyContext.GetAll();
+            return View(company);
+        }
         public ActionResult Dashboard()
         {
                 var userId = Session["id"];
@@ -167,13 +172,15 @@ namespace Cusrim.Controllers
                     faculty = _facultyContext.Get(Convert.ToInt64(studentInDb.FacultyId));
                 }
             var reports = _reportContext.GetByStudentId(studentInDb.Id);
-                var viewModel = new StudentDashboard
-                {
-                    HasStaff = facultyStatus,
-                    Student = studentInDb,
-                    Faculty = faculty,
-                    Report = new Report(),
-                    Reports = reports
+            var viewModel = new StudentDashboard
+            {
+                HasStaff = facultyStatus,
+                Student = studentInDb,
+                Faculty = faculty,
+                Report = new Report(),
+                Reports = reports,
+
+                Companies = _companyContext.GetAll()
                    
              
                 };

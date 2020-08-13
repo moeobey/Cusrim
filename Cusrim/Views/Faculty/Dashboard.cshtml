@@ -63,7 +63,7 @@
                                         <td>@report.Student.Name has uploaded report</td>
                                         <td>@report.Name</td>
                                         <td>@report.CreatedAt.ToLongDateString()</td>
-                                        <td>   @Html.ActionLink("View", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-pencil table_extra" })</td>
+                                        <td>   @Html.ActionLink("", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-eye table_extra" })</td>
                                     </tr>
                                 }
 
@@ -141,7 +141,7 @@
                                         <td>@report.Name</td>
                                         <td>@report.Student.Name</td>
                                         <td>@report.CreatedAt</td>
-                                        <td>   @Html.ActionLink("View", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-pencil table_extra" })</td>
+                                        <td>   @Html.ActionLink("", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-eye table_extra" })</td>
                                     </tr>
                                     }
 

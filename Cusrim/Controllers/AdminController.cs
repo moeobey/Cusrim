@@ -111,7 +111,7 @@ namespace Cusrim.Controllers
                 Students =_studentContext.GetSupervisees(faculty.Id)
             };
             
-            return View(faculty);
+            return View(viewModel);
         }
         public ActionResult studentDetails(int id)
         {
@@ -122,6 +122,15 @@ namespace Cusrim.Controllers
         {
             var faculty = _facultyContext.GetAll();
             return View(faculty);
+        }
+        public ActionResult ViewStudent()
+        {
+            var student = _studentContext.GetAllStudents();
+            return View(student);
+        }
+        public ActionResult ViewCompany() {
+            var company = _companyContext.GetAll();
+            return View(company);
         }
         public ActionResult Attach(int id)
         {
@@ -147,16 +156,30 @@ namespace Cusrim.Controllers
             studentInDb.FacultyId = facultyId;
             
             var facultyInDb = _facultyContext.Get(facultyId);
-            var faculty = new Faculty
-            {
-                StudentCount = facultyInDb.StudentCount++
-            };
+
             facultyInDb.StudentCount++;
-            _facultyContext.Update(faculty);
+            _facultyContext.Update(facultyInDb);
             _studentContext.Update(student);
             TempData["message"] = "Student Attached Successfully";
 
             return RedirectToAction("ViewFaculty");
+
+        }
+       public ActionResult Unassign(int id)
+        {
+            var student = new Student();
+            var studentInDb = _studentContext.Get(id);
+            var facultyInDb = _facultyContext.Get(Convert.ToInt64(studentInDb.FacultyId));
+            if (facultyInDb.StudentCount > 0)
+            {
+                facultyInDb.StudentCount--;
+                _facultyContext.Update(facultyInDb);
+            }
+            studentInDb.FacultyId = null;
+            _studentContext.Update(student);
+            TempData["message"] = "Student Unassigned Successfully";
+            return RedirectToAction("ViewFaculty");
+
 
         }
 

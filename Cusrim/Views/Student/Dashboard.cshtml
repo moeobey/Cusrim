@@ -12,7 +12,7 @@
         <div class="row ">
             <div class="col-md-6 mb-3">
                 <div class="card-header dash-header">
-                    Assigned Supervisor
+                    <h3>SUPERVISOR</h3>
                 </div>
                 <div class="card outer-outline">
                     <div class="card-body dashboard-container">
@@ -44,7 +44,7 @@
         </div>
         <div class="col-md-6 mb-3">
             <div class="card-header dash-header">
-                Notifications
+                <h3>NOTIFICATIONS</h3>
             </div>
             <div class="card outer-outline">
 
@@ -60,7 +60,7 @@
                                     <td>Report upload successful</td>
                                     <td>@report.Name</td>
                                     <td>@report.CreatedAt</td>
-                                    <td>   @Html.ActionLink("View", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-pencil table_extra" })</td>
+                                    <td>   @Html.ActionLink(" ", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-eye table_extra" })</td>
                                 </tr>
                             }
 
@@ -73,7 +73,7 @@
         <div class="row ">
             <div class="col-md-6 mb-3">
                 <div class="card-header dash-header">
-                    Profile
+                  <h3>PROFILE</h3>  
                 </div>
                 <div class="card outer-outline">
 
@@ -95,12 +95,12 @@
                             </div>
                         </div>
                     </div>
-                 
+
                 </div>
             </div>
             <div class="col-md-6 mb-3">
                 <div class="card-header dash-header">
-                    Report
+                   <h3>REPORT</h3> 
                 </div>
                 <div class="card outer-outline">
 
@@ -127,7 +127,7 @@
             </div>
             <div class="col-md-12 mb-3">
                 <div class="card-header dash-header">
-                    Your Reports
+                    <h3>YOUR REPORTS</h3>
                 </div>
                 <div class="card outer-outline">
 
@@ -150,7 +150,7 @@
                                         <td><img src="~/Images/file.png" style="height:30px; width:30px"></td>
                                         <td>@report.Name</td>
                                         <td>@report.CreatedAt</td>
-                                        <td>   @Html.ActionLink("View", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-pencil table_extra" })</td>
+                                        <td>   @Html.ActionLink(" ", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-eye table_extra" })</td>
                                     </tr>
                                 }
 
@@ -158,10 +158,52 @@
                         </table>
 
                     </div>
-        </div>
+                </div>
 
-</div>
-    </div>
+            </div>
+            <div class="col-md-6 mb-6">
+                <div class="card-header dash-header">
+                    <h3>COMPANIES</h3> 
+                </div>
+                <div class="card outer-outline">
+
+                    <div class="card-body container dashboard-container">
+                        <table class="table report table-borderless  table-hover">
+                            <thead>
+                                <tr>
+                                    <th> Name</th>
+                                    <th>Locationt</th>
+                                    <th>action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var company in Model.Companies)
+                                {
+
+                                    <tr>
+                                        <td>@company.Name</td>
+                                        <td>@company.Location</td>
+                                        <td>   @Html.ActionLink(" ", "CompanyDetails", "Admin", new { id = company.Id }, new { @class = "fa fa-eye table_extra" })</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Html.ActionLink("View All", "ViewCompany", "Admin", new { }, new { @class = " table_extra btn btn-primary w-100 text-white " })
+
+                        </div>
+                       
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
 <div class="modal fade" id="reportForm" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">

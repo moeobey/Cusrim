@@ -242,3 +242,13 @@ overflow-y:auto;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
 }
+a{
+    text-decoration:none;
+        
+}
+a:hover{
+    text-decoration:none;
+}
+.form-inline {
+    display: unset;
+}
