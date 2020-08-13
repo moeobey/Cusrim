@@ -49,7 +49,9 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AdminDashboard.cs" />
+    <Compile Include="ViewModels\AttachViewModel.cs" />
     <Compile Include="ViewModels\FacultyDashboard.cs" />
+    <Compile Include="ViewModels\FacultyDetails.cs" />
     <Compile Include="ViewModels\FacultyRegistration.cs" />
     <Compile Include="ViewModels\StudentDashboard.cs" />
     <Compile Include="ViewModels\StudentRegistration.cs" />

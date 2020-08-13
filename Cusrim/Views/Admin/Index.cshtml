@@ -6,6 +6,19 @@
 @{
     Html.RenderPartial("../Navbar");
 }
+
+@if (TempData["message"] != null)
+{
+    <div class=" alert alert-danger">
+        <strong>@TempData["message"]</strong>
+    </div>
+}
+@if (TempData["success"] != null)
+{
+    <div class=" alert alert-success">
+        <strong>@TempData["success"]</strong>
+    </div>
+}
 <div class="container">
     <div class="outer-outline">
         <div class="row ">
@@ -15,7 +28,7 @@
                 </div>
                 <div class="card outer-outline">
                     <div class="card-body dashboard-container">
-                        @if (Model.Student == null)
+                        @if (Model.Students == null)
                         {
                             <p>You currently have no students</p>
                         }
@@ -24,7 +37,7 @@
                             <table class="table report table-borderless  table-hover">
                                 <thead>
                                     <tr>
-                                        
+
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>action</th>
@@ -32,14 +45,14 @@
                                 </thead>
                                 <tbody>
 
-                                    @foreach (var student in Model.Student)
+                                    @foreach (var student in Model.Students)
                                     {
 
                                         <tr>
-                                            
+
                                             <td>@student.Name</td>
                                             <td>@student.Email</td>
-                                            <td>   @Html.ActionLink("View", "studentDetails", "Admin", new { id = student.Id }, new { @class = "fa fa-pencil table_extra" })</td>
+                                            <td>   @Html.ActionLink(" ", "studentDetails", "Admin", new { id = student.Id }, new { @class = "fa fa-eye table_extra" })</td>
                                         </tr>
                                     }
 
@@ -51,6 +64,62 @@
 
                         }
                     </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.ActionLink("View All", "ViewStudent", "Admin", new { @class = " table_extra btn btn-primary w-100 text-white " })
+
+                        </div>
+                        <div class="col-md-6">
+                            <a data-toggle="modal" data-target="#studentForm" class="btn btn-primary text-white w-100 ">Add Student</a>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="modal fade" id="studentForm" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add Student</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body text-center">
+
+                                    @using (Html.BeginForm("SaveStudent", "Admin", FormMethod.Post, new { @class = "form-signin" }))
+
+                                    {
+
+                                        <label for="inputEmail" class="pull-left">Name</label>
+                                        @Html.TextBoxFor(m => m.Student.Name, new { @class = "form-control", placeholder = "Student Name", required = "required" })
+
+                                        <label for="inputPassword" class="">Matirc Number</label>
+                                        @Html.TextBoxFor(m => m.Student.MatricNo, new { @class = "form-control", placeholder = "Matric Number", required = "required" })
+                                        <label for="inputPassword" class="pull-left">Department</label>
+                                        @Html.TextBoxFor(m => m.Student.Department, new { @class = "form-control", placeholder = "Department", required = "required" })
+                                        <label for="inputPassword" class="pull-left">Email</label>
+                                        @Html.TextBoxFor(m => m.Student.Email, new { @class = "form-control", placeholder = "Email", required = "required", type = "email" })
+                                        <label for="inputPassword" class="pull-left">Level</label>
+                                        @Html.TextBoxFor(m => m.Student.Level, new { @class = "form-control", placeholder = "Level", required = "required" })
+                                        <label for="inputPassword" class="pull-left">Grade</label>
+                                        @Html.TextBoxFor(m => m.Student.Grade, new { @class = "form-control", placeholder = "GPA e.g 4.5", required = "required" })
+
+                                        <div class="checkbox mb-3">
+                                            @Html.AntiForgeryToken()
+                                            <button class="btn w-75 text-center align_center btn-block bg_yellow mt-5" type="submit">Save</button>
+
+                                        </div>
+
+
+                                    }
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6 mb-3">
@@ -60,7 +129,7 @@
                 <div class="card outer-outline">
 
                     <div class="card-body dashboard-container">
-                        @if (Model.Faculty == null)
+                        @if (Model.Faculties == null)
                         {
                             <p>You currently have no faculty</p>
                         }
@@ -69,7 +138,7 @@
                             <table class="table report table-borderless  table-hover">
                                 <thead>
                                     <tr>
-                                        
+
                                         <th>Name</th>
                                         <th>Email
                                         <th>action</th>
@@ -77,14 +146,14 @@
                                 </thead>
                                 <tbody>
 
-                                    @foreach (var faculty in Model.Faculty)
+                                    @foreach (var faculty in Model.Faculties)
                                     {
 
                                         <tr>
-                                            
+
                                             <td>@faculty.Name</td>
                                             <td>@faculty.Email</td>
-                                            <td>   @Html.ActionLink("View", "facultyDetails", "Admin", new { id = faculty.Id }, new { @class = "fa fa-pencil table_extra" })</td>
+                                            <td>   @Html.ActionLink(" ", "facultyDetails", "Admin", new { id = faculty.Id }, new { @class = "fa fa-eye table_extra" })</td>
                                         </tr>
                                     }
 
@@ -95,6 +164,61 @@
 
 
                         }
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.ActionLink("View All", "ViewFaculty", "Admin", new { @class = " table_extra btn btn-primary w-100" })
+
+                        </div>
+                        <div class="col-md-6">
+                            <a data-toggle="modal" data-target="#facultyForm" class="btn btn-primary text-white w-100  ">Add Faculty</a>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="modal fade" id="facultyForm" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add Faculty</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body text-center">
+
+                                    @using (Html.BeginForm("SaveFaculty", "Admin", FormMethod.Post, new { @class = "form-signin" }))
+
+                                    {
+
+                                        <label for="inputEmail" class="pull-left">Name</label>
+                                        @Html.TextBoxFor(m => m.Faculty.Name, new { @class = "form-control", placeholder = "Faculty Name", required = "required" })
+
+                                        <label for="inputPassword" class="">Staff Number</label>
+                                        @Html.TextBoxFor(m => m.Faculty.StaffNo, new { @class = "form-control", placeholder = "Staff Number", required = "required" })
+                                        <label for="inputPassword" class="pull-left">Department</label>
+                                        @Html.TextBoxFor(m => m.Faculty.Department, new { @class = "form-control", placeholder = "Department", required = "required" })
+                                        <label for="inputPassword" class="pull-left">Email</label>
+                                        @Html.TextBoxFor(m => m.Faculty.Email, new { @class = "form-control", placeholder = "Email", required = "required", type = "email" })
+                                        <label for="inputPassword" class="pull-left">Level</label>
+                                        @Html.TextBoxFor(m => m.Faculty.PhoneNumber, new { @class = "form-control", placeholder = "Phone Number", required = "required" })
+
+
+                                        <div class="checkbox mb-3">
+                                            @Html.AntiForgeryToken()
+                                            <button class="btn w-75 text-center align_center btn-block bg_yellow mt-5" type="submit">Save</button>
+
+                                        </div>
+
+
+                                    }
+
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -110,12 +234,12 @@
                         <table class="table report table-borderless  table-hover">
                             <thead>
                                 <tr>
-                                    
+
                                     <th>File Name</th>
                                     <th>Sent By</th>
                                     <th>Recieved By</th>
                                     <th>Uploaded at</th>
-                                    
+
                                     <th>action</th>
                                 </tr>
                             </thead>
@@ -125,19 +249,19 @@
                                 {
 
                                     <tr>
-                                        
+
                                         <td>@report.Name</td>
                                         <td>@report.Student.Name</td>
                                         <td>@report.Faculty.Name</td>
                                         <td>@report.CreatedAt.ToLongDateString()</td>
-                                        <td>   @Html.ActionLink("View", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-pencil table_extra" })</td>
+                                        <td>   @Html.ActionLink(" ", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-eye table_extra" })</td>
                                     </tr>
                                 }
 
                             </tbody>
                         </table>
                     </div>
-                 
+
                 </div>
             </div>
             <div class="col-md-6 mb-3">
@@ -173,7 +297,7 @@
 
                                             <td>@company.Name</td>
                                             <td>@company.Location</td>
-                                            <td>   @Html.ActionLink("View", "CompanyDetails", "Admin", new { id = company.Id }, new { @class = "fa fa-pencil table_extra" })</td>
+                                            <td>   @Html.ActionLink(" ", "CompanyDetails", "Admin", new { id = company.Id }, new { @class = "fa fa-eye table_extra" })</td>
                                         </tr>
                                     }
 
@@ -203,7 +327,7 @@
                         @using (Html.BeginForm("Save", "Admin", FormMethod.Post, new { @class = "form-signin" }))
 
                         {
-                       
+
                             <label for="inputEmail" class="pull-left">Name</label>
                             @Html.TextBoxFor(m => m.company.Name, new { @class = "form-control", placeholder = "Company Name", required = "required" })
 
@@ -223,7 +347,7 @@
                             <div class="checkbox mb-3">
                                 @Html.AntiForgeryToken()
                                 <button class="btn w-75 text-center align_center btn-block bg_yellow mt-5" type="submit">Save</button>
-                               
+
                             </div>
 
 

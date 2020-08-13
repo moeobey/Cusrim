@@ -35,6 +35,16 @@ namespace Cusrim.Data
         {
             return _context.Students.Where(c => c.FacultyId == facultyId);
         }
+        public IEnumerable<Student> GetAllUnassigned()
+        {
+            return _context.Students.Where(c => c.FacultyId == null);
+        }
+
+        public IEnumerable<Student> GetAllStudents()
+        {
+            return _context.Students.Include(c=>c.Faculty);
+        }
+
 
 
     }

@@ -56,13 +56,13 @@
                                 @foreach (var report in Model.Reports)
                                 {
 
-                                    <tr>
-                                        <td>Report upload successful</td>
-                                        <td>@report.Name</td>
-                                        <td>@report.CreatedAt</td>
-                                        <td>@Html.ActionLink(" ", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-eye table_extra" })</td>
-                                    </tr>
-                                }
+                                <tr>
+                                    <td>Report upload successful</td>
+                                    <td>@report.Name</td>
+                                    <td>@report.CreatedAt</td>
+                                    <td>   @Html.ActionLink(" ", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-eye table_extra" })</td>
+                                </tr>
+                            }
 
                             </tbody>
                         </table>
@@ -73,14 +73,14 @@
         <div class="row ">
             <div class="col-md-6 mb-3">
                 <div class="card-header dash-header">
-                    Student Profile
+                  <h3>PROFILE</h3>  
                 </div>
                 <div class="card outer-outline">
 
                     <div class="card-body dashboard-container">
                         <div class="row">
                             <div class="col-md-4">
-                                <img class="dash_image" src="~/Images/WhatsApp Image 2018-06-21 at 7.07.43 PM.jpeg" />
+                                <img class="dash_image" src="~/Images/avatar.png" />
                             </div>
                             <div class="col-md-8">
 
@@ -100,7 +100,7 @@
             </div>
             <div class="col-md-6 mb-3">
                 <div class="card-header dash-header">
-                    Upload Report
+                   <h3>REPORT</h3> 
                 </div>
                 <div class="card outer-outline">
 
@@ -127,7 +127,7 @@
             </div>
             <div class="col-md-12 mb-3">
                 <div class="card-header dash-header">
-                    All Your Uploaded Reports
+                    <h3>YOUR REPORTS</h3>
                 </div>
                 <div class="card outer-outline">
 
@@ -163,7 +163,7 @@
             </div>
             <div class="col-md-6 mb-6">
                 <div class="card-header dash-header">
-                    <h3>COMPANIES</h3>
+                    <h3>COMPANIES</h3> 
                 </div>
                 <div class="card outer-outline">
 
@@ -184,7 +184,7 @@
                                     <tr>
                                         <td>@company.Name</td>
                                         <td>@company.Location</td>
-                                        <td>@Html.ActionLink(" ", "CompanyDetails", "Admin", new { id = company.Id }, new { @class = "fa fa-eye table_extra" })</td>
+                                        <td>   @Html.ActionLink(" ", "CompanyDetails", "Admin", new { id = company.Id }, new { @class = "fa fa-eye table_extra" })</td>
                                     </tr>
                                 }
 
@@ -197,7 +197,7 @@
                             @Html.ActionLink("View All", "ViewCompany", "Admin", new { }, new { @class = " table_extra btn btn-primary w-100 text-white " })
 
                         </div>
-
+                       
 
                     </div>
                 </div>

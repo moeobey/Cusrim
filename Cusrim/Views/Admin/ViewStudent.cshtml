@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Cusrim.Core.Models.Student>
+@{
+    ViewBag.Title = "ViewStudents";
+}
+@{
+    Html.RenderPartial("../Navbar");
+}
+
+@if (TempData["message"] != null)
+{
+    <div class=" alert alert-success">
+        <strong>@TempData["message"]</strong>
+    </div>
+}
+
+<div class="container">
+    <h3>STUDENTS    </h3>
+
+    <table id="table" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th> Name</th>
+                <th>Matric Number</th>
+                <th>Department</th>
+                <th>Email</th>
+                <th>Level</th>
+                <th>Grade</th>
+                <th> Supervisor</th>
+
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model)
+            {
+
+                <tr>
+                    <td>@student.Name</td>
+
+                    <td>@student.MatricNo</td>
+                    <td>@student.Department</td>
+                    <td>@student.Email</td>
+
+                    <td>@student.Level</td>
+                    <td>@student.Grade</td>
+                    <td>
+                        @if (student.FacultyId != null)
+                        {
+                            <p class="bg-success">@student.Faculty.Name</p>
+                        }
+                        else
+                        {
+                            <p class="bg-danger">not assigned</p>
+                        }
+                                    </td>
+                    <td>
+
+                        <div class="pull-left">
+                            @Html.ActionLink(" ", "studentDetails", "Admin", new { id = student.Id }, new { @class = "fa fa-eye table_extra" })
+
+                        </div>
+
+
+
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+    <a class="bottomNav" onclick="history.go(-1); return false;" href="#">Back</a><br />
+
+</div>
