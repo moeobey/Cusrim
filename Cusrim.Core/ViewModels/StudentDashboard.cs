@@ -15,5 +15,6 @@ namespace Cusrim.Core.ViewModels
         public Report Report { get; set; }
         public IEnumerable<Report> Reports { get; set; }
         public bool HasStaff { get; set; }
+        public IEnumerable<Company> Companies { get; set; }
     }
 }

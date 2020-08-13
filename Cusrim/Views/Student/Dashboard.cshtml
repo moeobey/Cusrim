@@ -12,64 +12,64 @@
         <div class="row ">
             <div class="col-md-6 mb-3">
                 <div class="card-header dash-header">
-                    My Assigned SIWES Supervisor
+                    <h3>My Assigned SIWES Supervisor</h3>
                 </div>
                 <div class="card outer-outline">
                     <div class="card-body dashboard-container">
-                            @if (!Model.HasStaff)
-                            {
-                                <p>You are not currently assigned to a supervisor</p>
-                            }
-                            else
-                            {
+                        @if (!Model.HasStaff)
+                        {
+                            <p>You are not currently assigned to a supervisor</p>
+                        }
+                        else
+                        {
 
 
 
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <img class="dash_image" src="~/Images/WhatsApp Image 2018-06-22 at 9.43.29 AM.jpeg" />
-                                    </div>
-                                    <div class="col-md-8">
-                                        <h4>Name</h4>
-                                        <p>@Model.Faculty.Name</p>
-                                        <h4>Phone Number</h4> <p>@Model.Faculty.PhoneNumber</p>
-                                        <h4>Email</h4> <p>@Model.Faculty.Email</p>
-                                        <h4>Department</h4> <p>@Model.Faculty.Department</p>
-                                    </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img class="dash_image" src="~/Images/WhatsApp Image 2018-06-22 at 9.43.29 AM.jpeg" />
                                 </div>
+                                <div class="col-md-8">
+                                    <h4>Name</h4>
+                                    <p>@Model.Faculty.Name</p>
+                                    <h4>Phone Number</h4> <p>@Model.Faculty.PhoneNumber</p>
+                                    <h4>Email</h4> <p>@Model.Faculty.Email</p>
+                                    <h4>Department</h4> <p>@Model.Faculty.Department</p>
+                                </div>
+                            </div>
 
                         }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="card-header dash-header">
+                    Notifications
+                </div>
+                <div class="card outer-outline">
+
+                    <div class="card-body dashboard-container">
+                        <table class="table report table-borderless  table-hover">
+
+                            <tbody>
+
+                                @foreach (var report in Model.Reports)
+                                {
+
+                                    <tr>
+                                        <td>Report upload successful</td>
+                                        <td>@report.Name</td>
+                                        <td>@report.CreatedAt</td>
+                                        <td>@Html.ActionLink(" ", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-eye table_extra" })</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 mb-3">
-            <div class="card-header dash-header">
-                Notifications
-            </div>
-            <div class="card outer-outline">
-
-                <div class="card-body dashboard-container">
-                    <table class="table report table-borderless  table-hover">
-                       
-                        <tbody>
-
-                            @foreach (var report in Model.Reports)
-                            {
-
-                                <tr>
-                                    <td>Report upload successful</td>
-                                    <td>@report.Name</td>
-                                    <td>@report.CreatedAt</td>
-                                    <td>   @Html.ActionLink("View", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-pencil table_extra" })</td>
-                                </tr>
-                            }
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
         <div class="row ">
             <div class="col-md-6 mb-3">
                 <div class="card-header dash-header">
@@ -95,7 +95,7 @@
                             </div>
                         </div>
                     </div>
-                 
+
                 </div>
             </div>
             <div class="col-md-6 mb-3">
@@ -150,7 +150,7 @@
                                         <td><img src="~/Images/file.png" style="height:30px; width:30px"></td>
                                         <td>@report.Name</td>
                                         <td>@report.CreatedAt</td>
-                                        <td>   @Html.ActionLink("View", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-pencil table_extra" })</td>
+                                        <td>   @Html.ActionLink(" ", "ReportDetails", "Student", new { id = report.Id }, new { @class = "fa fa-eye table_extra" })</td>
                                     </tr>
                                 }
 
@@ -158,40 +158,82 @@
                         </table>
 
                     </div>
-        </div>
+                </div>
 
-</div>
-    </div>
-
-<div class="modal fade" id="reportForm" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Upload Report</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
-            <div class="modal-body text-center">
+            <div class="col-md-6 mb-6">
+                <div class="card-header dash-header">
+                    <h3>COMPANIES</h3>
+                </div>
+                <div class="card outer-outline">
 
-                @using (Html.BeginForm("Report", "Student", null, FormMethod.Post,
-                              new { enctype = "multipart/form-data" }))
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true)
+                    <div class="card-body container dashboard-container">
+                        <table class="table report table-borderless  table-hover">
+                            <thead>
+                                <tr>
+                                    <th> Name</th>
+                                    <th>Locationt</th>
+                                    <th>action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                  
-                    @Html.TextBoxFor(m => m.Report.Name, new { @class = "form-control text-center", placeholder = "Enter report title", required = "required" })
-                    <br />
-                    <div class="editor-field">
-                        <input id="ImagePath" title="Upload an image of your report"
-                               type="file" name="file" />
+                                @foreach (var company in Model.Companies)
+                                {
+
+                                    <tr>
+                                        <td>@company.Name</td>
+                                        <td>@company.Location</td>
+                                        <td>@Html.ActionLink(" ", "CompanyDetails", "Admin", new { id = company.Id }, new { @class = "fa fa-eye table_extra" })</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
                     </div>
-                    <p><input type="submit" class="btn btn-primary" value="Save" /></p>
-                }
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Html.ActionLink("View All", "ViewCompany", "Admin", new { }, new { @class = " table_extra btn btn-primary w-100 text-white " })
+
+                        </div>
+
+
+                    </div>
+                </div>
 
             </div>
-
         </div>
-    </div>
-</div>
+
+        <div class="modal fade" id="reportForm" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Upload Report</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+
+                        @using (Html.BeginForm("Report", "Student", null, FormMethod.Post,
+                                      new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+
+
+                            @Html.TextBoxFor(m => m.Report.Name, new { @class = "form-control text-center", placeholder = "Enter report title", required = "required" })
+                            <br />
+                            <div class="editor-field">
+                                <input id="ImagePath" title="Upload an image of your report"
+                                       type="file" name="file" />
+                            </div>
+                            <p><input type="submit" class="btn btn-primary" value="Save" /></p>
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
