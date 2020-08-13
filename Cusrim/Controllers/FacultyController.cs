@@ -15,6 +15,7 @@ namespace Cusrim.Controllers
         private readonly FacultyLogic _facultyContext = new FacultyLogic();
         private readonly StudentLogic _studentContext = new StudentLogic();
         private readonly ReportLogic _reportContext = new ReportLogic();
+        private readonly CompanyLogic _companyContext  = new CompanyLogic();
 
 
 
