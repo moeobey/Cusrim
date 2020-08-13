@@ -49,5 +49,10 @@ namespace Cusrim.logic
         {
             return _db.GetSupervisees(facultyId).OrderByDescending(x => x.Id); ;
         }
+        public IEnumerable<Student> GetAllUnassigned()
+        {
+            return _db.GetAllUnassigned().OrderByDescending(x => x.Id); ;
+        }
+        
     }
 }

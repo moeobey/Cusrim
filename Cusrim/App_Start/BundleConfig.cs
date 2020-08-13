@@ -20,11 +20,16 @@ namespace Cusrim
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.js")
+                 .Include("~/Scripts/moe.js")
+                   .Include("~/Scripts/DataTables/jquery.dataTables.js")
+                .Include("~/Scripts/DataTables/dataTables.bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css")
+                   .Include("~/Content/DataTables/css/dataTables.bootstrap4.css")
+                   .Include("~/Content/font-awesome.css"));
         }
     }
 }

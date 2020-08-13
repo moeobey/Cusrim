@@ -236,3 +236,9 @@ overflow-y:auto;
    
     text-align: center;
 }
+.form-group .input-group-addon {
+    background-color: #F6F7FB;
+    border-radius: 5px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
